@@ -19,4 +19,23 @@ export class WebSocketClient
     newTest(data: any) {
         this.socket.emit('newTest', { 'data': data });
     }
+    testCreated(){
+        console.log("on testCreated");
+        return this.listenOnChannel('testCreated');
+    }
+    private listenOnChannel(channel: string) {
+        return ((observer: any) => {
+            this.socket.on(channel, (data: any) => {
+                observer.next(data);
+            });
+            return () => {
+                this.socket.removeEventListener(channel);
+                //this.socket.disconnect();
+
+                // NOTA: MUITO IMPORTANTE
+                // Se usar o sicket disconnect, quando se faz unsubscribe, o socket é fechada!!!!
+                // Em vez disso remove-se apenas os listeners para esse socket, mantendo o socket aberto
+            }
+        });
+    }
 }

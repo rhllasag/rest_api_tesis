@@ -17,8 +17,6 @@ export class WebSocketServer {
             console.error("Socket connected");
             client.on('newTest', (data) => {
                 wsServer.contadorSocketMessages++;  
-                console.log(data);
-                console.error(data);
                 this.notifyAll('testCreated',data);
             });
             client.on('newPost', (data) => {      
@@ -52,6 +50,7 @@ export class WebSocketServer {
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
+        console.log("Server:  "+msgData);
         this.io.sockets.emit(msgID, msgData);
     };
 }
