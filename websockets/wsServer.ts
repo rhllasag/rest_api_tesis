@@ -9,12 +9,9 @@ export class WebSocketServer {
 
     public init = (server: any) => {
         let wsServer: WebSocketServer= this;
-        //wsServer.users = new Map<any, string>();
-        
         this.io = io.listen(server);    
         
         this.io.sockets.on('connection', (client: any) => {
-            console.error("Socket connected");
             client.on('newTest', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('testCreated',data);
@@ -50,7 +47,8 @@ export class WebSocketServer {
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
-        console.log("Server:  "+msgData);
+        console.log("Server:  "+msgID);
         this.io.sockets.emit(msgID, msgData);
+        
     };
 }

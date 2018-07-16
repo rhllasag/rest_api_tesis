@@ -21,6 +21,10 @@ export class RestResources extends RestBase {
         }
         console.log(request.params.text);
         this.wsClient.newTest("test rhllasag");
+        this.wsClient.testCreated().subscribe(
+            success=>{console.log("The message is on the promise")},
+            error=>{console.error}
+        );
         response.send(200, { 'msg': request.params.text } || {});
         return next();
     }
