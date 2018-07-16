@@ -5,6 +5,7 @@ export class RestBase{
 
     public handlerSettings: HandlerSettings;
     public wsServer: WebSocketServer;
+    
 
     protected handleError = (err: string, response: any, next: any) => {
     	response.send(500, err);

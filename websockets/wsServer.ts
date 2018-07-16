@@ -2,7 +2,6 @@ import {TicTacToeGame, GameStatus, TIMEOUT} from '../social_model/game';
 import {AuthUtil, UserInfo} from '../security/auth.util';
 
 const io = require('socket.io');
-
 export class WebSocketServer {
     private contadorSocketMessages = 0;
     public io: any;
@@ -16,21 +15,11 @@ export class WebSocketServer {
         
         this.io.sockets.on('connection', (client: any) => {
             console.error("Socket connected");
-            // ---------------------------------------------------------------------------------
-            // identifyMySelf
-            // ---------------------------------------------------------------------------------
-            // Client passes token on a "identifyMyself" message.
-            // userId and UserInfo is kept on the socket
-            client.on('identifyMyself', (data) => {
-                let user: UserInfo = AuthUtil.validateToken(data.token);
-                if (user){
-                    client.userId = user._id;
-                    client.userInfo = user;
-                      
-                } else {
-                    client.userId = undefined;
-                    client.userInfo = undefined;
-                }
+            client.on('newTest', (data) => {
+                wsServer.contadorSocketMessages++;  
+                console.log(data);
+                console.error(data);
+                this.notifyAll('testCreated',data);
             });
             client.on('newPost', (data) => {      
                 wsServer.contadorSocketMessages++;   
@@ -54,7 +43,6 @@ export class WebSocketServer {
             })
             client.on('deleteInvitation', (data) => {      
                 wsServer.contadorSocketMessages++;   
-                
                 this.notifyAll('friendDeleted',data);           
             })
 
