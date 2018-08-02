@@ -13,15 +13,16 @@ export class WebSocketClient
     public socket;
     constructor() {
         if (!this.socket) {
-            this.socket = io('http://192.168.140.101:8080');  // URL to webSockets                     
+            this.socket = io('http://192.168.140.110:8080');  // URL to webSockets                     
         }
     }
-    newTest(data: any) {
-        this.socket.emit('newTest', { 'data': data });
+
+    newJoystickPossition(data: any) {
+        this.socket.emit('newJoystickPossition', { 'data': data });
     }
-    testCreated(): Observable<any>{
+    joystickPossitionChanged(): Observable<any>{
         
-        return this.listenOnChannel('testCreated');
+        return this.listenOnChannel('joystickPossitionChanged');
     }
     private listenOnChannel(channel: string):Observable<any> {
         return new Observable((observer: any) => {

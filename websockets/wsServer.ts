@@ -16,38 +16,17 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('testCreated',data);
             });
-            client.on('newPost', (data) => {      
-                wsServer.contadorSocketMessages++;   
-                
-                this.notifyAll('postCreated',data);           
-            })
-            client.on('newFriend', (data) => {      
-                wsServer.contadorSocketMessages++;   
-                
-                this.notifyAll('invitationAccepted',data);           
-            })
-            client.on('newInvitation', (data) => {      
-                wsServer.contadorSocketMessages++;   
-                
-                this.notifyAll('invitationCreated',data);           
-            })
-            client.on('deleteFriend', (data) => {      
-                wsServer.contadorSocketMessages++;   
-                
-                this.notifyAll('friendDeleted',data);           
-            })
-            client.on('deleteInvitation', (data) => {      
-                wsServer.contadorSocketMessages++;   
-                this.notifyAll('friendDeleted',data);           
-            })
-
+            client.on('newJoystickPossition', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('joystickPossitionChanged',data);
+            });
         });
         this.io.sockets.on('disconnect', (client: any) => {
             console.log('Disconnect ' +  client.id)            
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
-        console.log("Server:  "+msgID);
+        console.log("Server:  "+msgData);
         this.io.sockets.emit(msgID, msgData);
         
     };

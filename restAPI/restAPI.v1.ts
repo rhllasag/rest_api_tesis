@@ -15,7 +15,7 @@ export class RestAPI_v1{
     constructor (server: any, wsServer: WebSocketServer, passSecurity: PassportSecurity) {
         this.handlerSettings = new HandlerSettings( wsServer, passSecurity, AppConfig.restAPIPrefix('1'));
         this.resources= new RestResources(this.handlerSettings);
-        server.post(this.url('test'),this.resources.createPost);
+        server.post(this.url('joystick'),this.resources.joystrickPossition);
 
     };
 }

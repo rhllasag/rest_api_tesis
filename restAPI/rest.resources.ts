@@ -13,15 +13,16 @@ export class RestResources extends RestBase {
         super(handlerSettings);
         this.wsClient=new WebSocketClient();
     }
-    public createPost = (request: any, response: any, next: any) => {
-        if (request.params.text == null) {
-            console.error('RestDevelop.CreatePost: Invalid parameters');
+    
+    public joystrickPossition = (request: any, response: any, next: any) => {
+        if (request.params.joystick == null) {
+            console.error('RestDevelop.joystickPossition: Invalid parameters');
             response.send(400, { 'msg': 'Invalid parameters' } || {});
             return next();
         }
-        console.log(request.params.text);
-        this.wsClient.newTest("test rhllasag");
-        this.wsClient.testCreated().subscribe(
+        console.log(request.params.joystick);
+        this.wsClient.newJoystickPossition(request.params.joystick);
+        this.wsClient.joystickPossitionChanged().subscribe(
             success=>{console.log("The message is on the promise")},
             error=>{console.error}
         );
