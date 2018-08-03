@@ -22,10 +22,10 @@ export class RestResources extends RestBase {
         }
         console.log(request.params.joystick);
         this.wsClient.newJoystickPossition(request.params.joystick);
-        this.wsClient.joystickPossitionChanged().subscribe(
-            success=>{console.log("The message is on the promise")},
-            error=>{console.error}
-        );
+        // this.wsClient.joystickPossitionChanged().subscribe(
+        //     success=>{console.log("The message is on the promise")},
+        //     error=>{console.error}
+        // );
         response.send(200, { 'msg': request.params.text } || {});
         return next();
     }
