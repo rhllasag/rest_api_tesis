@@ -26,7 +26,7 @@ export class RestResources extends RestBase {
         //     success=>{console.log("The message is on the promise")},
         //     error=>{console.error}
         // );
-        response.send(200, { 'msg': request.params.text } || {});
+        response.send(200, { 'msg': request.params.joystick } || {});
         return next();
     }
 }

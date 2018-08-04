@@ -13,7 +13,7 @@ export class WebSocketClient
     public socket;
     constructor() {
         if (!this.socket) {
-            this.socket = io('http://192.168.140.110:8080');  // URL to webSockets                     
+            this.socket = io('http://localhost:8080');  // URL to webSockets                     
         }
     }
 
