@@ -20,10 +20,12 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);
             });
+            client.on('chat', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('joystickPossitionChanged',data);
+            });
         });
-        this.io.sockets.on('chat', (client: any) => {
-            console.log('chat ' +  client)            
-        });
+        
         this.io.sockets.on('disconnect', (client: any) => {
             console.log('Disconnect ' +  client.id)            
         });
