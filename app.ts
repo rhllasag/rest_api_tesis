@@ -5,6 +5,7 @@ const passport = require('passport');
 
 import {AppConfig} from './app/app.config';
 import {WebSocketServer} from './websockets/wsServer';
+import {WebSocketClient} from './websockets/wsClient';
 import {RestAPI_v1} from './restAPI/restAPI.v1';
 import {PassportSecurity} from './security/passport.security';
 
@@ -12,7 +13,7 @@ import {PassportSecurity} from './security/passport.security';
 // Create Restify and WebSocket Server
 const restifyServer = restify.createServer();
 const socketServer = new WebSocketServer();
-
+const socketClient = new WebSocketClient();
 // Prepare and configure Restify Server
 //restify.CORS.ALLOW_HEADERS.push("content-type");
 
@@ -85,3 +86,6 @@ new RestAPI_v1(restifyServer, socketServer, passportSecurity);
 restifyServer.listen(AppConfig.restAPIPort, () => console.log('%s listening at %s', restifyServer.name, restifyServer.url));
     // Websocket is initialized after the server
 socketServer.init(restifyServer.server);
+ socketClient.joystickPossitionChanged().subscribe( success=>{console.log("The message is on the promise")},
+          error=>{console.error
+ });

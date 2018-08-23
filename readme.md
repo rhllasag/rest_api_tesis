@@ -6,3 +6,4 @@ npm install nodemon
 npm install typescript
 npm install bcrypt
 npm install socket.io
+npm install @moovel/yolo --saveip
