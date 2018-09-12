@@ -31,7 +31,7 @@ export class WebSocketServer {
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
-       // console.log("Server in "+msgID+":  "+msgData);
+        console.log("Server in "+msgID+":  "+msgData);
         this.io.sockets.emit(msgID, msgData);
         
     };

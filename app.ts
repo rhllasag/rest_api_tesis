@@ -89,3 +89,4 @@ socketServer.init(restifyServer.server);
  socketClient.joystickPossitionChanged().subscribe( success=>{console.log("The message is on the promise")},
           error=>{console.error
  });
+ socketClient.newJoystickPossition("x y");

@@ -16,6 +16,5 @@ export class RestAPI_v1{
         this.handlerSettings = new HandlerSettings( wsServer, passSecurity, AppConfig.restAPIPrefix('1'));
         this.resources= new RestResources(this.handlerSettings);
         server.post(this.url('joystick'),this.resources.joystrickPossition);
-
     };
 }

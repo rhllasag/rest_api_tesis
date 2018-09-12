@@ -15,13 +15,13 @@ export class WebSocketClient
     public socket;
     constructor() {
         if (!this.socket) {
-            this.socket = io('http://192.168.140.110:8080');  // URL to webSockets                     
+            this.socket = io('http://192.168.140.110:8080/');  // URL to webSockets                     
         }
     }
 
     newJoystickPossition(data: any) {
-        //console.log("image det");
-        this.socket.emit('newJoystickPossition', { 'data': data });
+        console.log("newJoystickPossition send data from the client: "+data);
+        this.socket.emit('newJoystickPossition', " pos x , pos y need to be JSON");
     }
     joystickPossitionChanged(): Observable<any>{
         //console.log("image detection");
