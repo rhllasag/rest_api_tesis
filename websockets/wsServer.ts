@@ -20,6 +20,10 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);
             });
+            client.on('newBatteryLevel', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('batteryLevelChanged',data);
+            });
             client.on('chat', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);

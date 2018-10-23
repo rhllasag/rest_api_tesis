@@ -23,6 +23,10 @@ export class WebSocketClient
         console.log("newJoystickPossition send data from the client: "+data);
         this.socket.emit('newJoystickPossition', " pos x , pos y need to be JSON");
     }
+    newBatteryLevel(data: any) {
+        console.log("newBatteryLevel: "+data);
+        this.socket.emit('newBatteryLavel',data);
+    }
     joystickPossitionChanged(): Observable<any>{
         //console.log("image detection");
         // darknet.detectImage({
