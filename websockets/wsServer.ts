@@ -24,6 +24,22 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('batteryLevelChanged',data);
             });
+            client.on('newAirlinkWifiLevel', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('airlinkWifiLevelChanged',data);
+            });
+            client.on('newGPSSignalStatus', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('gpsSignalStatusChanged',data);
+            });
+            client.on('newSystemStatus', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('systemStatusChanged',data);
+            });
+            client.on('newFlightMode', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('flightModeChanged',data);
+            });
             client.on('chat', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);
@@ -35,8 +51,9 @@ export class WebSocketServer {
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
-        //var jsonData=JSON.parse(JSON.stringify(msgData));
-        //console.log("Server in "+msgID+":  "+jsonData['batteryLevel']);
+        var jsonData=JSON.parse(JSON.stringify(msgData));
+//        console.log("Server in "+msgID+":  "+jsonData['batteryLevel']);
+        console.log("Server in "+msgID+":  "+jsonData);
         this.io.sockets.emit(msgID, JSON.stringify(msgData));
         
     };
