@@ -24,7 +24,7 @@ export class WebSocketClient
         this.socket.emit('newJoystickPossition', " pos x , pos y need to be JSON");
     }
     newBatteryLevel(data: any) {
-        console.log("newBatteryLevel: "+data);
+        
         this.socket.emit('newBatteryLavel',data);
     }
     joystickPossitionChanged(): Observable<any>{

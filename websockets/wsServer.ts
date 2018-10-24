@@ -35,8 +35,9 @@ export class WebSocketServer {
         });
     };
     public notifyAll = (msgID: string, msgData: any) => {
-        console.log("Server in "+msgID+":  "+msgData);
-        this.io.sockets.emit(msgID, msgData);
+        //var jsonData=JSON.parse(JSON.stringify(msgData));
+        //console.log("Server in "+msgID+":  "+jsonData['batteryLevel']);
+        this.io.sockets.emit(msgID, JSON.stringify(msgData));
         
     };
 }
