@@ -32,13 +32,17 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('gpsSignalStatusChanged',data);
             });
+            client.on('newRCConnectionStatus', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('rcConnectionStatusChanged',data);
+            });
             client.on('newSystemStatus', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('systemStatusChanged',data);
             });
-            client.on('newFlightMode', (data) => {
+            client.on('newFlightModeSwitch', (data) => {
                 wsServer.contadorSocketMessages++;  
-                this.notifyAll('flightModeChanged',data);
+                this.notifyAll('flightModeSwitchChanged',data);
             });
             client.on('chat', (data) => {
                 wsServer.contadorSocketMessages++;  
