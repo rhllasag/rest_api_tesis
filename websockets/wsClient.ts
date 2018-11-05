@@ -2,7 +2,6 @@
 import {TicTacToeGame, GameStatus, TIMEOUT} from '../social_model/game';
 import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
 import {AuthUtil, UserInfo} from '../security/auth.util';
-const darknet = require('@moovel/yolo');
 const io = require('socket.io-client');
 class SocketError extends Error {
     constructor(m: string) {
