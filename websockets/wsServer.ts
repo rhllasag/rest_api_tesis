@@ -44,6 +44,10 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('flightModeSwitchChanged',data);
             });
+            client.on('newFlightAssistantState', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('flightAssistantStateChanged',data);
+            })
             client.on('chat', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);
