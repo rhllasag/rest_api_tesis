@@ -48,10 +48,15 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('flightAssistantStateChanged',data);
             })
-            client.on('chat', (data) => {
+            client.on('newBatteryANeededRTH', (data) => {
                 wsServer.contadorSocketMessages++;  
-                this.notifyAll('joystickPossitionChanged',data);
+                this.notifyAll('batteryANeededRTHChanged',data);
             });
+            client.on('newFlightTime', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('flightTimeChanged',data);
+            });
+                       
         });
         
         this.io.sockets.on('disconnect', (client: any) => {
