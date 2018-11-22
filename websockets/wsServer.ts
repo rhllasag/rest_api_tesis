@@ -16,10 +16,12 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('testCreated',data);
             });
+            //-----------FLIGHT CONTROLLER ---------------///
             client.on('newJoystickPossition', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPossitionChanged',data);
             });
+            //-----------SCREEN INFORMATION ---------------///
             client.on('newBatteryLevel', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('batteryLevelChanged',data);
@@ -55,6 +57,28 @@ export class WebSocketServer {
             client.on('newFlightTime', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('flightTimeChanged',data);
+            });
+            //-----------TAKE OFF , LANDING ---------------///
+            client.on('newTakeOff', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('takeOffChanged',data);
+            });
+            client.on('newLanding', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('landingChanged',data);
+            });
+            client.on('newReturnToHome', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('returnToHomeChanged',data);
+            });
+            //-----------INFORMATION LOGS---------------///
+            client.on('newInformation', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('informationChanged',data);
+            });
+            client.on('newError', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('errorChanged',data);
             });
                        
         });
