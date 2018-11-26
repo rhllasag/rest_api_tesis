@@ -58,6 +58,18 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('flightTimeChanged',data);
             });
+            client.on('newHight', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('hightChanged',data);
+            });
+            client.on('newRadio', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('radioChanged',data);
+            });
+            client.on('newCoordinates', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('coordinatesChanged',data);
+            });
             //-----------TAKE OFF , LANDING ---------------///
             client.on('newTakeOff', (data) => {
                 wsServer.contadorSocketMessages++;  
@@ -80,6 +92,7 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('errorChanged',data);
             });
+            
                        
         });
         
