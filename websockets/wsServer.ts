@@ -62,9 +62,9 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('hightChanged',data);
             });
-            client.on('newRadio', (data) => {
+            client.on('newHomeLocation', (data) => {
                 wsServer.contadorSocketMessages++;  
-                this.notifyAll('radioChanged',data);
+                this.notifyAll('homeLocationChanged',data);
             });
             client.on('newCoordinates', (data) => {
                 wsServer.contadorSocketMessages++;  
