@@ -86,7 +86,3 @@ new RestAPI_v1(restifyServer, socketServer, passportSecurity);
 restifyServer.listen(AppConfig.restAPIPort, () => console.log('%s listening at %s', restifyServer.name, restifyServer.url));
     // Websocket is initialized after the server
 socketServer.init(restifyServer.server);
- socketClient.joystickPossitionChanged().subscribe( success=>{console.log("The message is on the promise")},
-          error=>{console.error
- });
- socketClient.newJoystickPossition("x y");

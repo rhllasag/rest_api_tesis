@@ -58,10 +58,6 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('flightTimeChanged',data);
             });
-            client.on('newHight', (data) => {
-                wsServer.contadorSocketMessages++;  
-                this.notifyAll('hightChanged',data);
-            });
             client.on('newHomeLocation', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('homeLocationChanged',data);
@@ -92,7 +88,11 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('errorChanged',data);
             });
-            
+            //-----------CONFIG FLIGHT MISSIONS-----------------------//
+            client.on('newHome', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('homeChanged',data);
+            });
                        
         });
         
