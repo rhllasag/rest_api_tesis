@@ -102,7 +102,8 @@ export class WebSocketServer {
     };
     public notifyAll = (msgID: string, msgData: any) => {
         var jsonData=JSON.parse(JSON.stringify(msgData));
-//        console.log("Server in "+msgID+":  "+jsonData['batteryLevel']);
+        if(msgID.localeCompare("errorChanged")==0)
+        console.log("Server in "+msgID+":  "+jsonData['error']);
         console.log("Server in "+msgID+":  "+jsonData);
         this.io.sockets.emit(msgID, JSON.stringify(msgData));
         
