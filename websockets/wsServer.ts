@@ -93,7 +93,42 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('homeChanged',data);
             });
-                       
+            client.on('addWaypoints', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('addWaypointsChanged',data);
+            });
+            client.on('clearWaypoints', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('clearWaypointsChanged',data);
+            });
+            client.on('newAltitudeWaypoints', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('newAltitudeWaypointsChanged',data);
+            });
+            client.on('newSpeedWaypoints', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('newSpeedWaypointsChanged',data);
+            });
+            client.on('uploadWaypointsMission', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('uploadWaypointsMissionChanged',data);
+            });
+            client.on('startWaypointsMission', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('startWaypointsMissionChanged',data);
+            });
+            client.on('endWaypointsMission', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('endWaypointsMissionChanged',data);
+            });
+            client.on('newActionAfterMission', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('actionAfterMissionChanged',data);
+            });
+            client.on('newHeading', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('headingChanged',data);
+            });
         });
         
         this.io.sockets.on('disconnect', (client: any) => {
