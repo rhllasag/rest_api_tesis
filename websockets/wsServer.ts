@@ -26,6 +26,10 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('batteryLevelChanged',data);
             });
+            client.on('newBatteryState', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('batteryStateChanged',data);
+            });
             client.on('newAirlinkWifiLevel', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('airlinkWifiLevelChanged',data);
@@ -79,6 +83,14 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('returnToHomeChanged',data);
             });
+            client.on('newReturnToHomeQuestion', (data) => { //----------------------------------------------------------
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('returnToHomeQuestionChanged',data);
+            });
+            client.on('newReturnToHomeDecision', (data) => { //----------------------------------------------------------
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('returnToHomeDesicionChanged',data);
+            });
             //-----------INFORMATION LOGS---------------///
             client.on('newInformation', (data) => {
                 wsServer.contadorSocketMessages++;  
@@ -129,6 +141,24 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('headingChanged',data);
             });
+            //------ CONFIG AIRCRAFT Battery----------------//
+            client.on('newSmartRTH', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('smartRTHChanged',data);
+            });
+            client.on('newLowBatteryWarningThreshold', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('lowBatteryWarningThresholdChanged',data);
+            });
+            client.on('newSeriousLowBatteryWarningThreshold', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('seriousLowBatteryWarningThresholdChanged',data);
+            });
+            client.on('newConfirmSmartReturnToHomeRequest', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('confirmSmartReturnToHomeRequestChanged',data);
+            });
+             //------ CONFIG AIRCRAFT Proximity Sensors----------------//
         });
         
         this.io.sockets.on('disconnect', (client: any) => {
