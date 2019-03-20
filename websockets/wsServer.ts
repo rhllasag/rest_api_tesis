@@ -16,6 +16,14 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('testCreated',data);
             });
+            client.on('connectSocket', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('connectSocketChanged',data);
+            });
+            client.on('disconnectSocket', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('disconnectSocketChanged',data);
+            });
             //-----------FLIGHT CONTROLLER ---------------///
             client.on('newJoystickPossition', (data) => {
                 wsServer.contadorSocketMessages++;  
@@ -83,11 +91,11 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('returnToHomeChanged',data);
             });
-            client.on('newReturnToHomeQuestion', (data) => { //----------------------------------------------------------
+            client.on('newReturnToHomeQuestion', (data) => { 
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('returnToHomeQuestionChanged',data);
             });
-            client.on('newReturnToHomeDecision', (data) => { //----------------------------------------------------------
+            client.on('newReturnToHomeDecision', (data) => { 
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('returnToHomeDesicionChanged',data);
             });
@@ -159,6 +167,39 @@ export class WebSocketServer {
                 this.notifyAll('confirmSmartReturnToHomeRequestChanged',data);
             });
              //------ CONFIG AIRCRAFT Proximity Sensors----------------//
+             client.on('newSmartRTH', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('smartRTHChanged',data);
+            });
+            client.on('newAnticollision', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('anticollisionChanged',data);
+            });
+            client.on('newHorizontalAnticollision', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('horizontalAnticollisionChanged',data);
+            });
+            client.on('newBeginnerMode', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('beginnerModeChanged',data);
+            });
+            client.on('newMaximumAltitude', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('maximumAltitudeChanged',data);
+            });
+            client.on('newLimitDistance', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('limitDistanceChanged',data);
+            });
+            client.on('newMaximumFlightDistance', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('maximumFlightDistanceChanged',data);
+            });
+            //------ CONFI   Panels----------------//
+            client.on('newJoystickPanel', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('joystickPanelChanged',data);
+            });
         });
         
         this.io.sockets.on('disconnect', (client: any) => {
@@ -167,8 +208,6 @@ export class WebSocketServer {
     };
     public notifyAll = (msgID: string, msgData: any) => {
         var jsonData=JSON.parse(JSON.stringify(msgData));
-        if(msgID.localeCompare("errorChanged")==0)
-        console.log("Server in "+msgID+":  "+jsonData['error']);
         console.log("Server in "+msgID+":  "+jsonData);
         this.io.sockets.emit(msgID, JSON.stringify(msgData));
         

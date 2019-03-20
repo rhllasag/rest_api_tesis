@@ -13,7 +13,7 @@ import {PassportSecurity} from './security/passport.security';
 // Create Restify and WebSocket Server
 const restifyServer = restify.createServer();
 const socketServer = new WebSocketServer();
-const socketClient = new WebSocketClient();
+//const socketClient = new WebSocketClient();
 // Prepare and configure Restify Server
 //restify.CORS.ALLOW_HEADERS.push("content-type");
 
