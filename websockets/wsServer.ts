@@ -150,10 +150,6 @@ export class WebSocketServer {
                 this.notifyAll('headingChanged',data);
             });
             //------ CONFIG AIRCRAFT Battery----------------//
-            client.on('newSmartRTH', (data) => {
-                wsServer.contadorSocketMessages++;  
-                this.notifyAll('smartRTHChanged',data);
-            });
             client.on('newLowBatteryWarningThreshold', (data) => {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('lowBatteryWarningThresholdChanged',data);
