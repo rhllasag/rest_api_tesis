@@ -196,6 +196,11 @@ export class WebSocketServer {
                 wsServer.contadorSocketMessages++;  
                 this.notifyAll('joystickPanelChanged',data);
             });
+            //------ Video Streaming----------------//
+            client.on('enableReading', (data) => {
+                wsServer.contadorSocketMessages++;  
+                this.notifyAll('readingEnabled',data);
+            });
         });
         
         this.io.sockets.on('disconnect', (client: any) => {
